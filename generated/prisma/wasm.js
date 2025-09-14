@@ -141,7 +141,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../.env"
   },
   "relativePath": "../../prisma",
@@ -151,7 +151,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": true,
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -160,8 +160,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "datasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\nmodel Message {\n  id        Int      @id @default(autoincrement())\n  text      String\n  createdAt DateTime @default(now())\n}\n",
-  "inlineSchemaHash": "867cc0097a54b68d5fd7fc9978075e0da6c5fa9d9dfbb76ed14311ab40528e2a",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Message {\n  id        Int      @id @default(autoincrement())\n  text      String\n  createdAt DateTime @default(now())\n}\n",
+  "inlineSchemaHash": "f968797b47bf5335c858095eb9c0bb833c226d4cb7009dd030db10abdd8bf1fa",
   "copyEngine": true
 }
 config.dirname = '/'
