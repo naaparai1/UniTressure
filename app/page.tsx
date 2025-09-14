@@ -1,13 +1,18 @@
 "use client";
 import { useEffect, useState } from "react";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+type MessageType = Awaited<ReturnType<typeof prisma.message.findMany>>[number];
 
 export default function Home() {
-  const [messages, setMessages] = useState<any[]>([]);
+  const [messages, setMessages] = useState<MessageType[]>([]);
   const [text, setText] = useState("");
 
   async function loadMessages() {
     const res = await fetch("/api/messages");
-    setMessages(await res.json());
+    const data = await res.json();
+    setMessages(data);
   }
 
   async function addMessage() {
